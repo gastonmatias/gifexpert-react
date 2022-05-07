@@ -19,10 +19,10 @@ export const GifGrid = ({category}) => {
     return (
     <>
         
-        <h3>{category}</h3>
+        <h3 className='animate__animated animate__fadeIn' >{category}</h3>
         {/* para ahorrarse el "null" de un operador ternario usar "&&"... 
         { loading ? <p>loading</p> : null } */}
-        { loading && <p>loading</p> }
+        { loading && <p className='animate__animated animate__flash'>Loading</p> }
         
          
         <div className='card-grid' >
