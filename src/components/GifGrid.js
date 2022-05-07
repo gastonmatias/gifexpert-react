@@ -1,28 +1,30 @@
 /* Colección de elementos que coincidan con la categoria de busqueda*/
 
-import React, {useEffect,useState} from 'react'
+import React from 'react'
+import { useFetchGifs } from '../hooks/useFetchGifs'
 //import { useFetchGifs } from '../hooks/useFetchGifs'
 import { GifGridItem } from './GifGridItem';
 //import { useFetchGifs } from '../hooks/useFetchGifs'
-import { getGifs } from '../helpers/getGifs';
+
 //import { useEffect } from 'react';
 
 export const GifGrid = ({category}) => {
 
-    const [images, setImages] = useState([])
+    /* para renombrar una propiedad en una desestructuracion:
+        {nombre_original: nombre_nuevo}
+    */
+    const {data:images,loading} = useFetchGifs(category);
 
-    useEffect(() => {
-      getGifs(category)
-        .then(setImages)
-    
-    }, [category])
-    
 
     return (
     <>
         
         <h3>{category}</h3>
-        {/* {loading ? 'Cargando...': 'Data cargada'} */}
+        {/* para ahorrarse el "null" de un operador ternario usar "&&"... 
+        { loading ? <p>loading</p> : null } */}
+        { loading && <p>loading</p> }
+        
+         
         <div className='card-grid' >
         {/*  insertar cada imagen de la api como una <li> */}
         {
